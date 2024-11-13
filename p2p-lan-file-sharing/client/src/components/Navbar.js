@@ -9,8 +9,8 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul className="navbar-nav">
             {isAuthenticated ? (
               <>
                 <li className="nav-item">
@@ -20,7 +20,7 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
                   <Link className="nav-link" to="/search">Search</Link>
                 </li>
                 <li className="nav-item">
-                  <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
+                  <button className="btn btn-link nav-link" onClick={handleLogout} aria-label="Logout">Logout</button>
                 </li>
               </>
             ) : (

@@ -10,7 +10,7 @@ import Navbar from './components/Navbar';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { 
     const token = localStorage.getItem('token');
     if (token) {
       setIsAuthenticated(true);

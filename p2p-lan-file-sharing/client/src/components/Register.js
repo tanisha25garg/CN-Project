@@ -4,42 +4,48 @@ import axios from 'axios';
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/auth/register', { username, password });
+      setMessage('Registration successful!');
       console.log(res.data);
     } catch (err) {
+      setMessage('Registration failed. Please try again.');
       console.error(err.response.data);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="card p-3">
+    <div className="container">
       <h2 className="card-title">Register</h2>
-      <div className="form-group">
-        <label>Username</label>
-        <input
-          type="text"
-          className="form-control"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          className="form-control"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit" className="btn btn-primary">Register</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            aria-label="Username"
+          />
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            aria-label="Password"
+          />
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      {message && <p className="mt-3">{message}</p>}
+    </div>
   );
 };
 

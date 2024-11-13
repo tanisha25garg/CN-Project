@@ -1,16 +1,20 @@
+// FileUpload.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [description, setDescription] = useState('');
+  const [progress, setProgress] = useState(0);
+  const [message, setMessage] = useState('');
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const handleFileChange = (e) => setFile(e.target.files[0]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setProgress(0);
+    setMessage('');
+    
     const formData = new FormData();
     formData.append('file', file);
     formData.append('description', description);
@@ -18,14 +22,15 @@ const FileUpload = () => {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post('/api/files/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'x-auth-token': token,
+        headers: { 'Content-Type': 'multipart/form-data', 'x-auth-token': token },
+        onUploadProgress: (progressEvent) => {
+          setProgress(Math.round((progressEvent.loaded * 100) / progressEvent.total));
         },
       });
-      console.log('File uploaded successfully:', res.data);
+      setMessage('File uploaded successfully');
     } catch (err) {
-      console.error('Error uploading file:', err.response.data);
+      setMessage('Error uploading file');
+      console.error(err);
     }
   };
 
@@ -46,6 +51,8 @@ const FileUpload = () => {
         />
       </div>
       <button type="submit" className="btn btn-primary">Upload</button>
+      {progress > 0 && <progress value={progress} max="100">{progress}%</progress>}
+      {message && <p className="mt-2">{message}</p>}
     </form>
   );
 };

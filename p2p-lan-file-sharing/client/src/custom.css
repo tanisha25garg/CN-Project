@@ -1,47 +1,170 @@
-body {
-    background-color: #f8f9fa;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin-top: 50px;
-  }
-  
-  .card {
-    margin-bottom: 20px;
+/* Overall Container */
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-title {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings */
+h2.card-title {
+    color: #333;
     font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  .navbar {
+    font-weight: 700;
+    text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .navbar-brand {
-    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form Controls */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0069d9;
+    box-shadow: 0 0 5px rgba(0, 105, 217, 0.2);
+    outline: none;
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #0069d9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #6c757d;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Message Display */
+p.mt-2 {
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
     font-weight: bold;
-  }
-  
-  .nav-link {
-    font-size: 18px;
-  }
+    margin-top: 10px;
+}
+
+/* Progress Bar */
+progress {
+    width: 100%;
+    height: 12px;
+    border-radius: 6px;
+    margin-top: 15px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #f1f1f1;
+    border-radius: 6px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #0069d9;
+    border-radius: 6px;
+}
+
+/* List Group */
+.list-group {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+
+.list-group-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-group-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.list-group-item p strong {
+    color: #333;
+}
+
+.list-group-item button {
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h2.card-title {
+        font-size: 20px;
+    }
+
+    .btn-primary {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
