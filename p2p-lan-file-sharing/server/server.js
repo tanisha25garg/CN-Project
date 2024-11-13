@@ -2,15 +2,22 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const fileRoutes = require('./routes/files');
 const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, {
+  cors: {
+    origin: "http://localhost:3000", // Allow requests from this origin
+    methods: ["GET", "POST"]
+  }
+});
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -29,10 +36,25 @@ app.get('/', (req, res) => {
 });
 
 // Socket.io connection
+const peers = {};
+
 io.on('connection', (socket) => {
   console.log('New client connected');
+
+  socket.on('register-peer', ({ peerId }) => {
+    peers[peerId] = socket.id;
+    console.log(`Peer registered: ${peerId}`);
+  });
+
   socket.on('disconnect', () => {
     console.log('Client disconnected');
+    for (const peerId in peers) {
+      if (peers[peerId] === socket.id) {
+        delete peers[peerId];
+        console.log(`Peer unregistered: ${peerId}`);
+        break;
+      }
+    }
   });
 });
 

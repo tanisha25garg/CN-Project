@@ -15,6 +15,25 @@ const Search = () => {
     }
   };
 
+  const handleDownload = async (fileId, originalFilename) => {
+    try {
+      const res = await axios.get(`/api/files/download/${fileId}`, {
+        responseType: 'blob', // Important
+      });
+
+      // Create a URL for the file blob
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', originalFilename); // Set the file name
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (err) {
+      console.error('Error downloading file:', err.response.data);
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSearch}>
@@ -30,13 +49,19 @@ const Search = () => {
         <button type="submit">Search</button>
       </form>
       <div>
-        {results.map((file) => (
-          <div key={file._id}>
-            <h3>{file.filename}</h3>
-            <p>{file.description}</p>
-            <p>Uploaded by: {file.uploadedBy.username}</p>
-          </div>
-        ))}
+        <h2>Search Results</h2>
+        <ul>
+          {results.map((file) => (
+            <li key={file._id}>
+              <p>Filename: {file.originalFilename}</p>
+              <p>Description: {file.description}</p>
+              <p>Uploaded by: {file.uploadedBy.username}</p>
+              <button onClick={() => handleDownload(file._id, file.originalFilename)}>
+                Download
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
