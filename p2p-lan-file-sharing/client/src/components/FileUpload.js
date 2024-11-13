@@ -30,20 +30,22 @@ const FileUpload = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} className="card p-3">
+      <h2 className="card-title">Upload File</h2>
+      <div className="form-group">
         <label>File</label>
-        <input type="file" onChange={handleFileChange} required />
+        <input type="file" className="form-control" onChange={handleFileChange} required />
       </div>
-      <div>
+      <div className="form-group">
         <label>Description</label>
         <input
           type="text"
+          className="form-control"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <button type="submit">Upload</button>
+      <button type="submit" className="btn btn-primary">Upload</button>
     </form>
   );
 };

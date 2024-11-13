@@ -35,28 +35,33 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <div className="card p-3">
+      <h2 className="card-title">Search Files</h2>
       <form onSubmit={handleSearch}>
-        <div>
+        <div className="form-group">
           <label>Search</label>
           <input
             type="text"
+            className="form-control"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Search</button>
+        <button type="submit" className="btn btn-primary">Search</button>
       </form>
-      <div>
+      <div className="mt-4">
         <h2>Search Results</h2>
-        <ul>
+        <ul className="list-group">
           {results.map((file) => (
-            <li key={file._id}>
+            <li key={file._id} className="list-group-item">
               <p>Filename: {file.originalFilename}</p>
               <p>Description: {file.description}</p>
               <p>Uploaded by: {file.uploadedBy.username}</p>
-              <button onClick={() => handleDownload(file._id, file.originalFilename)}>
+              <button
+                className="btn btn-secondary"
+                onClick={() => handleDownload(file._id, file.originalFilename)}
+              >
                 Download
               </button>
             </li>

@@ -1,0 +1,1 @@
+Subramanian, Vasan. (2019). Pro MERN Stack: Full Stack Web App Development with Mongo, Express, React, and Node. 10.1007/978-1-4842-4391-6. 
