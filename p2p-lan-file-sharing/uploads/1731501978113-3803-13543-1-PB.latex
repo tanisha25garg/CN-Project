@@ -1,0 +1,522 @@
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{amsmath}
+
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+
+\usepackage[margin=1in]{geometry}
+
+\setlength{\parindent}{0pt}
+
+\graphicspath{/convert/k48ZNvH/localstore/anj39bq33assets}
+
+\begin{document}
+
+    A Bézier Extraction based XIGA Approach for Vibration Analysis of  Cracked FGM Plate using Simple First-Order Shear Deformation Theory    +S. K Singh\}, *I. V. Singh!, and B. K. Mishra! 
+
+\vspace{10pt}
+
+    Department of Mechanical and Industrial Engineering, Indian Institute of Technology Roorkee, Roorkee  247667, India. 
+
+\vspace{10pt}
+
+    +Presenting author: ssingh3@ me.iitr.ac.in 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/0.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/1.jpg}
+
+\centering
+
+\end{figure}
+
+    An extended isogeometric analysis (XIGA) approach based on Bézier extraction and simple  first-order shear deformation theory (S-FSDT) is proposed for the free vibration analysis of  cracked functionally graded material (FGM) plate. The XIGA relies on the concept of partition  of unity to model a crack. By decomposing the NURBS basis functions into Bernstein basis  functions and Bézier extraction operator, the implementation of XIGA becomes simple. The S-  FSDT uses four parameters for displacement field approximation which overcomes the shear-  locking and captures the shear deformation effect. The S-FSDT requires C' continuity which  is easily achieved through non-uniform rational B-spline (NURBS) basis functions. The  material properties of the FGM vary by power law along the thickness of plate. Several  numerical examples are solved to validate the accuracy of the proposed approach. The effects  of various parameters such as length to thickness ratio, crack length and boundary conditions  are investigated on the natural frequencies and mode shapes.   Keywords: X IGA; Bézier extraction; NURBS; FGM; Vibration 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/2.jpg}
+
+\centering
+
+\end{figure}
+
+    Functionally graded material (FGM) is a class of composite material made by mixing the two  different material phases such as ceramic and metal. Unlike composite material, the material  properties of the FGM vary smoothly and continuously in a certain direction and able to avoid  the inter-laminar stresses and debonding phenomenon. These advantageous features of FGM  are extensively used in variety of engineering applications [1]. In order to ensure the reliability  of components made from functionally graded materials (FGMs), it is essential to analyze their  behavior in the presence of crack, which can be done by evaluating the static and dynamic  behavior, of few standard crack problems. Over the years, several researchers have performed  the vibration analysis of cracked plates using different numerical techniques and plate theories.  Guan-Liang et al. [2] employed the finite element method (FEM) to perform the free vibration  analysis of cracked square plate based on the classical plate theory (CPT). Bachene et al. [3] 
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+    uses extended finite element method (X FEM) in context of first-order shear deformation theory  (FSDT) to investigate the free vibration behavior of cracked homogenous rectangular and  square plates. Further, Natarajan et al. [4] explored the X FEM based on FSDT to study the free  vibration analysis of cracked FGM plate. Huang et al. [5] used the Ritz method and 3D elasticity  theory to perform the free vibration analysis of cracked rectangular FGM plates.   In the present study, a simple first-order shear deformation theory (S-FSDT) is utilized for the  free vibration analysis of cracked FGM plates. The S-FSDT model requires four parameters for  displacement field approximation and completely overcomes the shear locking effect associated  with the original FSDT model [6]. Moreover, S-FSDT model requires C' continuity of  generalized displacement field which cannot be easily attainable using lower order Lagrangian  shape functions. However, this necessity is easily attainable by the NURBS basis functions  utilized by isogeometric analysis (IGA) [7]. Moreover, in order to capture the discontinuities in  the domain, partition of unity (PU) enrichment functions are incorporated with IGA  approximation and called as extended isogeometric analysis (XIGA) [8]. Over the years, XIGA  is widely used for solving the stationary and propagating cracks in 2D [9], 3D [10], cracked  plates [11, 12] and shell structures [13]. Furthermore, the implementation of XIGA can be  further simplified by incorporating the Bézier extraction approach [10]. Recently, Tan et al.  [14] employed XIGA based on Bézier extraction using refined plate theory for the free vibration  analysis of cracked FGM plates. Hence, the present work aims to extend the XIGA based on  Bézier extraction and S-FSDT for the free vibration analysis of cracked FGM plates. Numerous  examples are solved to validate the accuracy of the proposed approach and the obtained results 
+
+\vspace{10pt}
+
+    are compared to other published results.  2.1 Functionally Graded Plates 
+
+\vspace{10pt}
+
+    Let us consider a ceramic-metal functionally graded plate of uniform thickness h. The upper  surface of the plate is assumed to be ceramic rich whereas the bottom surface is fully composed  of the metal. As shown in the Fig. 1, the x-y plane is assumed as the mid-plane of the plate, and  the positive z-axis is directed above from the mid-plane. Moreover, along the thickness direction    (z) of the plate, Young’s modulus and density are varied using power law as [6], 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/3.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/4.jpg}
+
+\centering
+
+\end{figure}
+
+    where, n refers as gradient index and subscripts m and c denote the metal and ceramic    constituents, respectively. 
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+    Table 1: Material properties of FGM plate [5]         E (GPa) Vv p(kg /m*)         Aluminum (Al) 70 0.30 2702  Alumina (A1203) 300 0.30 3800     
+
+\vspace{10pt}
+
+         h Metal  Figure 1: A schematic of cracked FGM plate 
+
+\vspace{10pt}
+
+    2.2 Simple First-Order Shear Deformation Plate Theory  The displacement field at any point (x, y, z) in the plate based on S-FSDT is given as [6], 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/5.jpg}
+
+\centering
+
+\end{figure}
+
+    where, u, and v, represent the mid-plane displacements in x and y directions respectively; w, 
+
+\vspace{10pt}
+
+    and w, represent the bending and shear components of transverse displacement (w), 
+
+\vspace{10pt}
+
+    respectively.  Assuming the small strain condition, the non-zero strains are related with the displacement field  given in Eq. (3) as, 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/6.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/7.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/8.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    The relationship between the stress and strain are related by the following equation as,  6 =Q(z)(\&) —zK), T=G(Z) 7 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/9.jpg}
+
+\centering
+
+\end{figure}
+
+    where, k is the shear correction factor (SCF). In the present work, SCF is taken as k = 5/6.  Next, using the Hamilton principle, the weak form for free vibration analysis of a FGM plate    can be expressed as, 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/10.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/11.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/12.jpg}
+
+\centering
+
+\end{figure}
+
+    3. Bézier Extraction of NURBS 
+
+\vspace{10pt}
+
+    Bézier extraction represents the NURBS basis function over each element in the form of  Bernstein polynomial defined over C ° continuous isogeometric Bézier element. Bézier element  representation is given by Borden et al. [15] for the NURBS and further explored by Scott et  al. [16] for T-spline. In order to decompose the NURBS basis functions in to Bernstein  polynomial basis, Bézier decomposition is used. For more detail interested readers are    encouraged to follow these papers [15-17]. 
+
+\vspace{10pt}
+
+    4, Extended Isogeometric Analysis (XIGA) 
+
+\vspace{10pt}
+
+    The XIGA uses the merits of IGA and partition of enrichment (PU) concept for the fracture  analysis of stationary and quasi-static crack growth [8, 9, 14]. In XIGA, the crack is modeled  through enrichment functions added in the standard IGA approximation. At a particular point  x =(x,y), the displacement approximation for the crack based on Bézier extraction of NURBS 
+
+\vspace{10pt}
+
+    is written as, 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/13.jpg}
+
+\centering
+
+\end{figure}
+
+\par
+
+\vspace{10pt}
+
+    where, R,(x) is the NURBS basis functions which is written in the terms of Bernstein 
+
+\vspace{10pt}
+
+    polynomial basis functions and Bézier extraction, n,, indicates the total number of control 
+
+\vspace{10pt}
+
+    points per element and u, =\{u,,v,, W,, W, y indicates the degrees of freedom (DOFs) per control 
+
+\vspace{10pt}
+
+    point i in any NURBS element. Moreover, n, and n, represent the set of control points 
+
+\vspace{10pt}
+
+    associated with all those elements which possess crack face and crack-tip respectively.    Additionally, n,, enriched with Heaviside function, H (x) whereas n,, enriched with asymptotic 
+
+\vspace{10pt}
+
+    crack tip enrichment functions, £,(x).The 4, (x) are taken from the Ref. [14] 
+
+\vspace{10pt}
+
+    Substituting Eq. (7) into Eq. (4), the strains are given as, 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/14.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/15.jpg}
+
+\centering
+
+\end{figure}
+
+    Substituting Eq. (8) into Eq. (6), the following form is obtained,  (K -o°M)d=0 
+
+\vspace{10pt}
+
+    where, the K and M are global stiffness and mass matrix, respectively. The expression of K and  M are obtained as provided in Ref. [6].    5. Results and Discussions 
+
+\vspace{10pt}
+
+    In this section, the free vibration analysis of cracked FGM plates using S-FSDT in the context  of XIGA based on Bézier extraction approach is performed. Several rectangular and square  FGM plates having center crack configuration are considered. Unless stated otherwise, ceramic-  metal FGM plates whose material properties given in Table 1 are considered. Cubic NURBS  basis functions are used in either direction throughout this study, as it provides faster    convergence [11]. In all examples, a full integration using (p+1)x(q+1) Gauss points are used 
+
+\vspace{10pt}
+
+    for standard (non-enriched elements) and sub-triangulation scheme for the enriched elements  [12]. Moreover, three different boundary conditions are considered on the edges of plate such  as; SSSS, FCFF and CFCF, where, S, F and C represent simply supported, free and clamped  respectively. The simply supported boundary condition (S) used in this paper is represented as, 
+
+\vspace{10pt}
+
+    Vv, =W, =w, =0, x=0,a  u, =w, =w, =0, y=0,b 
+
+\vspace{10pt}
+
+    whereas the clamped boundary condition is given as [6],    The percentage difference of normalized natural frequencies is obtained as, 
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/16.jpg}
+
+\centering
+
+\end{figure}
+
+    As shown in Fig. 2, the rectangular FGM plate with planar dimension (axb) and uniform 
+
+\vspace{10pt}
+
+    thickness h containing a through-thickness center crack of length d is considered. Before  proceeding to the free vibration analysis of cracked FGM plates, initially a convergence study  of the normalized natural frequency of cracked homogeneous plate is performed. A fully simply  supported (SSSS) homogeneous rectangular plate with a/b = 1, b/h = 10, d/a =0.3 and material  properties of aluminum alloy as given in Table 1 is considered. The normalized natural    2    frequency E @. @=0x = x ie ] obtained using S-FSDT and XIGA based on Bézier approach 
+
+\vspace{10pt}
+
+    is presented in Table 2. It is observed that normalized frequencies obtained using S-FSDT based  XIGA match well with the 3-D elasticity results [5]. Moreover, as the number of control points  increases from 32x32 to 42x40 the results converge to two significant figures. Hence, for the  subsequent examples 32x32 or more number of control points will be used. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/17.jpg}
+
+\centering
+
+\end{figure}
+
+    Figure 2: A rectangular FGM plate with center crack 
+
+\vspace{10pt}
+
+    To further illustrate the accuracy of proposed method, the normalized natural frequencies is  obtained for different b/h and d/a ratios for the SSSS square homogeneous plate. The material  properties are taken same as the previous example. Table 3 presents the normalized natural  frequencies evaluated using S-FSDT based XIGA are compared with 3D elasticity approach  [5]. Itis found that the for both thick and thin plates the normalized natural frequencies obtained  using present approach are in good agreement with 3D elasticity results. The maximum  percentage difference between their results are within 4.21\% for Mode 2 with b/h = 20 and d/a  =0.5. 
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+    Table 2: Normalized natural frequency of SSSS square homogeneous plate (b/h = 10) with center  crack (d/a = 0.3)         Method Number of control points Mode         1 2 3         S-FSDT based XIGA 20x 20 5.4532 13.4416 13.7265 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/18.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/19.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/20.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/21.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/22.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/23.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/24.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/25.jpg}
+
+\centering
+
+\end{figure}
+
+    3D elasticity [5] 5.421 13.22 13.76     
+
+\vspace{10pt}
+
+                                                                                                             Table 3: Normalized natural frequency of SSSS square homogeneous plate with center crack  d/a  b/h Method Mode  1 2 3 4 5  0.3 5 S-FSDT based XIGA 5.0799 1.0129 1.5279 16.6322 18.6180  3D elasticity [5 4.960 0.84 1.61 16.64 18.06  \% Difference 2.39 08 0.71 0.05 3.04  10 S-FSDT based XIGA 5.5224 3.3887 3.7369 21.0819 23.7780  3D elasticity [5 5.421 3.22 3.76 20.97 23.13  \% Difference 1.85 27 0.17 0.53 2.76  20 S-FSDT based XIGA 5.6573 4.3151 4.5760 23.0514 26.1400  3D elasticity [5 5.590 4.21 4.57 22.94 25.62  \% Difference 1.2 0.74 0.04 0.48 2.01  100 S-FSDT based XIGA 5.7031 4.6623 4.8871 23.8391 27.1033  3D elasticity [5 5.701 4.65 4.89 23.82 27.11  \% Difference 0.04 0.08 0.02 0.08 0.02  0.5 5 S-FSDT based XIGA 4.8180 8.7417 1.4390 15.4412 16.7323  3D elasticity [5 4.633 8.764 1.43 15.97 16.89  \% Difference 3.91 0.25 0.08 3.37 0.94  10 S-FSDT based XIGA 5.2063 11.0595 3.6018 20.7129 22.0429  3D elasticity [5 5.069 11.10 3.55 20.35 21.44  \% Difference 2.67 0.37 0.38 1.77 2.77  20 S-FSDT based XIGA 5.3232 12.8075 4.4199 22.7085 24.0426  3D elasticity [5 5.238 12.28 4.37 22.44 23.60  \% Difference 1.61 4.21 0.35 1.19 1.86  100 S-FSDT based XIGA 5.3628 13.1284 4.7227 23.5087 24.8437  3D elasticity [5 5.353 12.98 4.72 23.46 24.79  \% Difference 0.18 1.14 0.02 0.21 0.22               
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+    Next, an Al/Al203 center cracked square FGM plate is considered and the effect of various  parameters such as; different boundary conditions, length to thickness ratio (b/h) and gradient  index (n) on normalized natural frequencies is analyzed as presented in Table 4. In this case, 
+
+\vspace{10pt}
+
+    2  the normalized natural frequency is obtained as a= 0x4 x a, where c represents the    c 
+
+\vspace{10pt}
+
+    material properties corresponding to ceramic (Al203) in Al/Al2O3 FGM plate. Table 4 reveals  that the normalized natural frequencies obtained using proposed method are well matched with  the 3D elasticity results. However, for FCFF boundary condition the maximum percentages in  normalized Mode 2 frequency is seen. Besides, the normalized frequencies increase with  increasing the b/h ratios and decreases as gradient index (n) increases. It is also observed that  the normalized frequencies for FCFF boundary condition is less as compared to SSSS and CFCF  boundary conditions. Finally, the contour of first mode shape of square Al/Al203 FGM plate  (b/h = 50) having center crack (d/a = 0.3) with CFCF and SSSS boundary conditions is shown  in Fig. 3. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/26.jpg}
+
+\centering
+
+\end{figure}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/27.jpg}
+
+\centering
+
+\end{figure}
+
+    Mode-1         (b) SSSS  Figure 3: First mode shape of square Al/Al203 FGM plate (b/h = 50) having center crack (d/a = 0.3) 
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+                                                                     Table 4: Normalized natural frequency of Al/Al203 square FGM plate with center crack (d/a = 0.3)  BCs n\_ bf/h Method Mode  1 2 3 4 5  SSSS\_ 0 5 S-FSDT based XIGA 5.0799 9.7269 9.7417 11.0129 11.5279  3D elasticity [5 4.959 9.728 9.742 10.84 11.60  \% Difference 2.41 0.01 0.00 1.58 0.62  50 S-FSDT based XIGA 5.6973 14.6173 14,8468 23.7352 26.9756  3D elasticity [5 5.665 14.58 14.84 23.68 26.71  \% Difference 0.57 0.26 0.05 0.23 0.99  0.2 5 S-FSDT based XIGA 4.7338 9.2672 9.2813 10.3189 10.7870  3D elasticity [5 4.627 9.266 9.280 10.18 10.88  \% Difference 2.28 0.01 0.01 1.36 0.86  50 S-FSDT based XIGA 5.2876 13.5678 13.7804 22.0323 25.0406  3D elasticity [5 5.259 13.53 13.78 21.99 24.80  \% Difference 0.54 0.28 0.00 0.19 0.97  5 5 S-FSDT based XIGA 3.3182 6.3156 6.3259 7.1625 7.4900  3D elasticity [5 3.185 6.274 6.296 6.823 7.322  \% Difference 4.10 0.66 0.47 4.86 2.27  50 S-FSDT based XIGA 3.7498 9.6192 9.7695 15.6156 17.7484  3D elasticity [5 3.725 9.581 9.760 15.56 17.53  \% Difference 0.66 0.40 0.10 0.36 1.24  FCFF 0 5 S-FSDT based XIGA 1.0164 2.4343 3.2024 5.3565 6.7674  3D elasticity [5 1.016 2.195 3.221 5.359 6.285  \% Difference 0.04 10.3 0.58 0.05 7.39  50 S-FSDT based XIGA 1.0494 2.5723 6.4260 7.8198 9.3068  0.2 5 S-FSDT based XIGA 0.9445 2.2627 3.0515 5.0015 6.3027  3D elasticity [5] 0.9441 2.049 3.069 5.010 5.869  \% Difference 0.04 9.91 0.57 0.17 7.13  50 S-FSDT based XIGA 0.9739 2.3872 5.9641 7.2575 8.6378  5 5 S-FSDT based XIGA 0.6674 1.5880 2.0887 3.4704 4.3767  3D elasticity [5] 0.6633 1.406 2.098 3.394 3.992  \% Difference 0.62 12.2 0.44 2.23 9.19  50 S-FSDT based XIGA 0.6907 1.6929 4.2288 5.1463 6.1245  CFCF 0 5 S-FSDT based XIGA 5.2039 6.6281 8.8744 10.3010 12.1163  50 S-FSDT based XIGA 6.4333 7.9599 12.7911 18.2150 20.1967  0.2 5 S-FSDT based XIGA 4.8705 6.1928 8.4553 9.6195 11.3993  50 S-FSDT based XIGA 5.9712 7.3879 11.8719 16.9093 18.7481  5 5 S-FSDT based XIGA 3.4024 4.3168 5.7698 6.6574 7.8857  50 S-FSDT based XIGA 4.2342 5.2385 8.4171 11.9857 13.2888                                                                      
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/28.jpg}
+
+\centering
+
+\end{figure}
+
+    In this work, the free vibration analysis of cracked FGM plates using S-FSDT in the context of  XIGA based on Bézier extraction approach is successfully performed. The gradation of material  properties is taken along the thickness of the plate. The bottom end of the plate possesses 100\%  alloy while top end possesses 100\% ceramic. The material properties (i.e. Young’s modulus \&  density) vary using power law from bottom to top end of the plate. NURBS basis functions  obtained from Bézier extraction technique are used for defining the geometric description and  solution approximation. The values of normalized frequencies are obtained using present  method are found in good agreement with 3D elasticity solutions. Moreover, the normalized  natural frequencies are significantly affected by the b/h ratios, crack aspect ratios (d/a), gradient  index (n) and boundary condtions. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/29.jpg}
+
+\centering
+
+\end{figure}
+
+    The first authors would like to thank Ministry of Human Resource Development (MHRD),  Government of India, New Delhi for providing the financial support in the form of fellowship  to this work. The authors would like to thank Science and Engineering Research Board (SERB),  Department of Science and Technology, Government of India, New Delhi for providing  financial support under the scheme of International travel support to this work through grant  no. ITS/2019/002691. The authors would also like to thank Alumni Association of Indian 
+
+\vspace{10pt}
+
+    Institute of Technology, Roorkee for providing partial financial support to this work. 
+
+\vspace{10pt}
+
+\begin{figure}[h]
+
+\includegraphics[width=\textwidth]{/convert/k48ZNvH/localstore/anj39bq33assets/30.jpg}
+
+\centering
+
+\end{figure}
+
+    . Gupta, A. and Talha, M. (2015): Recent development in modeling and analysis of functionally graded  materials and structures, Progress in Aerospace Sciences, Vol. 79, pp.1-14.   . Guan-Liang, Q., Song-Nian, G. and Jie-Sheng, J. (1991): A finite element model of cracked plates  and application to vibration problems, Computers \& Structures, Vol 39, pp. 483-487.   . Bachene, M., Tiberkak, R. and Rechak, S. (2009): Vibration analysis of cracked plates using the  extended finite element method, Archive of Applied Mechanics, Vol. 79, pp. 249-262.   . Natarajan, S., Baiz, P.M., Bordas, S., Rabczuk, T. and Kerfriden, P. (2011): Natural frequencies of  cracked functionally graded material plates by the extended finite element method, Composite  Structures, Vol. 93, pp. 3082-3092.   . Huang, C.S., Yang, PJ. and Chang, MJ. (2012): Three-dimensional vibration analyses of  functionally graded material rectangular plates with through internal cracks, Composite Structures,  Vol. 94, pp. 2764-2776. 
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+    6. Yin, S., Hale, J.S., Yu, T., Bui, T.Q. and Bordas, S.P. (2014): Isogeometric locking-free plate  element: a simple first order shear deformation theory for functionally graded plates, Composite  Structures, Vol. 118, pp. 121-138.   7. Hughes, T J.R., Cottrell, J.A. and Bazilevs, Y . (2005): Isogeometric analysis: CAD, finite elements,  NURBS, exact geometry and mesh refinement, Computer Methods in Applied Mechanics and  Engineering, Vol. 194, pp. 4135-4195.   8. Bhardwaj, G., Singh, S.K., Singh, I-V., Mishra, B.K. and Rabczuk, T. (2016a): Fatigue crack growth  analysis of an interfacial crack in heterogeneous materials using homogenized XIGA, Theoretical  and Applied Fracture Mechanics, Vol. 85, pp. 294-319.   9. Bhardwaj, G., Singh, IV. and Mishra, B.K. (2015): Fatigue crack growth in functionally graded  material using homogenized XIGA, Composite Structures, Vol. 134, pp. 269-284.   10. Singh, S.K., Singh, I.V., Bhardwaj, G. and Mishra, B.K. (2018a): A Bézier extraction based XIGA  approach for three-dimensional crack simulations, Advances in Engineering Software, Vol. 125, pp.  55-93   11. Singh, S.K., Singh, LV., Mishra, B.K. Bhardwaj, G. and Singh, S.K. (2018b): Analysis of cracked  plate using higher-order shear deformation theory: Asymptotic crack tip fields and XIGA  implementation. Computer Methods in Applied Mechanics and Engineering, Vol. 336, pp. 594-639.   12. Singh, S.K., Singh, I.V., Mishra, B.K. and Bhardwaj, G. (2019): Analysis of Cracked Functionally  Graded Material Plates using XIGA based on Generalized Higher-Order Shear Deformation Theory,  Composite Structures, https://doi.org/10.1016/j.compstruct.2019.111038   13. Nguyen-Thanh, N., Valizadeh, N., Nguyen, M.N., Nguyen-X uan, H., Zhuang, X., Areias, P., Zi, G.,  Bazilevs, Y., De Lorenzis, L. and Rabczuk, T. (2015): An extended isogeometric thin shell analysis  based on Kirchhoff—Love theory, Computer Methods in Applied Mechanics and Engineering, Vol.  284, pp. 265-291.   14. Tan, P., Nguyen-Thanh, N. and Zhou, K., 2017. Extended isogeometric analysis based on Bézier         extraction for an FGM plate by using the two-variable refined plate theory, Theoretical and Applied  Fracture Mechanics, Vol. 89, pp. 127-138.   15. Borden, MJ., Scott, M.A., Evans, J.A. and Hughes, T J.R. (2011): Isogeometric finite element data  structures based on Bézier extraction of NURBS, International Journal for Numerical Methods in  Engineering, Vol. 87, pp. 15-47.   16. Scott, M.A., Borden, MJ., Verhoosel, C.V., Sederberg, T.W. and Hughes, TJ.R. (2011):  Isogeometric finite element data structures based on Bézier extraction of T-splines, International  Journal for Numerical Methods in Engineering, Vol. 88, pp. 126-156.   17. Singh, S.K., Singh, I.V., Mishra, B.K., Bhardwaj, G. and Bui, T.Q. (2017): A simple, efficient and  accurate Bézier extraction based T-spline XIGA for crack simulations, Theoretical and Applied  Fracture Mechanics, Vol. 88, pp. 74-96. 
+
+\vspace{10pt}
+
+\par
+
+\vspace{10pt}
+
+\end{document}

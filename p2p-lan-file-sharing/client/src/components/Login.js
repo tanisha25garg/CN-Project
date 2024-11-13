@@ -9,9 +9,10 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/auth/login', { username, password });
-      console.log(res.data);
+      localStorage.setItem('token', res.data.token);
+      console.log('Login successful:', res.data);
     } catch (err) {
-      console.error(err.response.data);
+      console.error('Error logging in:', err.response.data);
     }
   };
 
