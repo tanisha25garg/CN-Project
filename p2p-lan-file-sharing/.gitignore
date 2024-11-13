@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+client/node_modules/
+
+# Build directories
+client/build/
