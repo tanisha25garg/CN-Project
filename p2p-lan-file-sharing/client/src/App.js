@@ -2,6 +2,7 @@ import React from 'react';
 import Register from './components/Register';
 import Login from './components/Login';
 import FileUpload from './components/FileUpload';
+import Search from './components/Search';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Register />
       <Login />
       <FileUpload />
+      <Search />
     </div>
   );
 };

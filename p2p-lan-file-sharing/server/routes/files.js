@@ -48,4 +48,21 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Search files
+router.get('/search', async (req, res) => {
+  try {
+    const { query } = req.query;
+    const files = await File.find({
+      $or: [
+        { filename: { $regex: query, $options: 'i' } },
+        { description: { $regex: query, $options: 'i' } },
+      ],
+    }).populate('uploadedBy', 'username');
+    res.json(files);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
