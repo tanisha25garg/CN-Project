@@ -24,9 +24,8 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container">
-        <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
-        <h1 className="text-center my-4">P2P LAN File Sharing System</h1>
+      <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+      <div className="container mt-4">
         <Routes>
           <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
           <Route path="/register" element={isAuthenticated ? <Navigate to="/" /> : <Register />} />
